@@ -20,25 +20,25 @@ void drawMenu(int topLine)
   if (topLine == 0)
   {
     lcd.clear();
-    lcd.setCursor(0, 0);
+    lcd.setCursor(4, 0);
     lcd.print(" Menu:");
-    lcd.setCursor(0, 1);
+    lcd.setCursor(4, 1);
     lcd.print(" <RED>");      
   }
   else if (topLine == 1)
   {
     lcd.clear();    
-    lcd.setCursor(0, 0);
+    lcd.setCursor(4, 0);
     lcd.print(" RED");
-    lcd.setCursor(0, 1);
+    lcd.setCursor(4, 1);
     lcd.print(" <GREEN>");    
   }
   else if (topLine == 2)
   {
     lcd.clear();
-    lcd.setCursor(0, 0);
+    lcd.setCursor(4, 0);
     lcd.print(" GREEN");
-    lcd.setCursor(0, 1);
+    lcd.setCursor(4, 1);
     lcd.print(" <BLUE>");   
   }
 }
@@ -209,7 +209,7 @@ void loop()
     {
       inMenu = false;
       chosenLED = chooseLED(encoderValue);
-      encoderValue = readLuminocity();      
+      encoderValue = readLuminocity();
       lcd.clear();
       printLuminocity(encoderValue);
     }
@@ -219,7 +219,7 @@ void loop()
       saveLuminocity(encoderValue);
       lcd.clear();      
       drawMenu(readChosenOption());
-      encoderValue = 0;      
+      encoderValue = readChosenOption();      
     }
   }
 

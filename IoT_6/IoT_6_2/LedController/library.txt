@@ -1,0 +1,10 @@
+name=LedController
+version=1.0.0
+author=Aleksander Musz <266568@student.pwr.edu.pl>
+maintainer=Aleksander Musz <266568@student.pwr.edu.pl>
+
+sentence=Arduino Library for IoT Laboratory
+paragraph=Supports the laboratory set
+category=Other
+url=https://example.com/LedController
+architectures=*

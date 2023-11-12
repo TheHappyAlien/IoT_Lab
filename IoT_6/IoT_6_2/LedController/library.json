@@ -1,0 +1,23 @@
+{
+    "name": "LedController",
+    "keywords": "led, colors",
+    "description": "Arduino Library for IoT Laboratory",
+    "repository":
+    {
+        "type": "git",
+        "url": "https://example.com/LedController.git"
+    },
+    "authors":
+    [
+        {
+            "name": "Aleksander Musz",
+            "email": "266568@student.pwr.edu.pl",
+            "url": "http://aleksander.musz.example.com",
+            "maintainer": true
+        }
+    ],
+    "version": "1.0.0",
+    "homepage": "hhttps://example.com/LedController",
+    "frameworks": "arduino",
+    "platforms": "*"
+}

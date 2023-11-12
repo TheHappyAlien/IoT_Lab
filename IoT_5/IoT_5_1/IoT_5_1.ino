@@ -16,6 +16,7 @@ void setup()
 
 int prevEN1 = 1;
 int prevEN2 = 1;
+int lineCounter = 0;
 
 void loop()
 {
@@ -27,6 +28,7 @@ void loop()
     Serial.print("Encoder 1: ");
     Serial.println(en1);
     prevEN1 = en1;
+    lineCounter++;
   }
 
   if (en2 != prevEN2)
@@ -34,6 +36,12 @@ void loop()
     Serial.print("Encoder 2: ");
     Serial.println(en2);
     prevEN2 = en2;
+    lineCounter++;
+  }
+
+  if (lineCounter == 4) {
+    Serial.println("");
+    lineCounter = 0;
   }
 }
 

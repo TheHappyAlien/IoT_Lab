@@ -14,12 +14,12 @@ void setup()
   lcd.print("VOLTAGE: ");
 }
 
-int previousValue = 0;
+int previousValue = -1;
 
 void loop()
 {
   int value = analogRead(A0);
-  float voltage = min(value*0.0049, 5);
+  float voltage = value*0.00489;
 
   if (value == previousValue){
     return;
