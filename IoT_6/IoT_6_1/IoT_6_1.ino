@@ -7,7 +7,6 @@
 #define LED_GREEN 5
 #define LED_BLUE 3
 
-
 LiquidCrystal_I2C lcd(0x27, 16, 2);
 OneWire oneWire(A1);
 DallasTemperature tempSensors(&oneWire);
@@ -57,7 +56,7 @@ float tempOut;
 float maxTemp = 0;
 float minTemp = 0;
 
-void weatherSystem(float temperature)
+void setIndicatorLED(float temperature)
 {
   if (temperature < 18.0f) {
     digitalWrite(LED_RED, LOW);
@@ -77,34 +76,25 @@ void weatherSystem(float temperature)
 
 void loop()
 {
-  char buffer[40];
-
   tempSensors.requestTemperatures();
-  float tempIn = 10; //tempSensors.getTempCByIndex(1);
+  float tempIn = tempSensors.getTempCByIndex(1);
   float tempOut = tempSensors.getTempCByIndex(0);
-
-  weatherSystem(tempOut);
 
   minTemp = min(minTemp, tempOut);
   maxTemp = max(maxTemp, tempOut);
 
-  sprintf(buffer, "IN:%4s", String(tempIn, 0).c_str());
+  setIndicatorLED(tempOut);
+
+  char buffer[40];
+  sprintf(buffer, "IN:%4s", String(tempIn, 1).c_str());
   lcd.setCursor(0, 0);
   lcd.print(buffer);
 
-  // degree symbol
-  lcd.setCursor(7, 0);
-  lcd.write(byte(0));
-
-  sprintf(buffer, "OUT:%3s", String(tempOut, 0).c_str());
+  sprintf(buffer, "OUT:%4s", String(tempOut, 1).c_str());
   lcd.setCursor(8, 0);
   lcd.print(buffer);
 
-  // degree symbol
-  lcd.setCursor(15, 0);
-  lcd.write(byte(0));
-
-  sprintf(buffer, "MIN:%2s", String(minTemp, 0).c_str());
+  sprintf(buffer, "MIN:%3s", String(minTemp, 0).c_str());
   lcd.setCursor(0, 1);
   lcd.print(buffer);
 

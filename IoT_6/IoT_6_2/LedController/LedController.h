@@ -2,7 +2,7 @@
 #define LEDCONTROLLER_H_
 #include "Arduino.h"
 
-typedef unsigned int pinNum;
+typedef unsigned int PinNum;
 
 enum Color
 {
@@ -18,14 +18,14 @@ enum Color
 
 class LedController {
 public:
-  void init(pinNum red, pinNum green, pinNum blue);
+  void init(PinNum red, PinNum green, PinNum blue);
   void setColor(unsigned short red, unsigned short green, unsigned short blue);
   void setColor(Color color);
 
 private:
-  pinNum ledRed;
-  pinNum ledGreen;
-  pinNum ledBlue;
+  PinNum ledRed;
+  PinNum ledGreen;
+  PinNum ledBlue;
 };
 
 #endif

@@ -7,6 +7,7 @@
 #######################################
 LedController KEYWORD1
 Color KEYWORD1
+PinNum KEYWORD1
 
 #######################################
 # Methods and Functions (KEYWORD2)
@@ -17,11 +18,3 @@ setColor KEYWORD2
 #######################################
 # Constants (LITERAL1)
 #######################################
-RED LITERAL1
-BLUE LITERAL1
-GREEN LITERAL1
-YELLOW LITERAL1
-CYAN LITERAL1
-MAGENTA LITERAL1
-BLACK LITERAL1
-WHITE LITERAL1
