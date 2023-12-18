@@ -1,53 +1,38 @@
 #!/usr/bin/env python3
 
 import paho.mqtt.client as mqtt
-import tkinter
-import sqlite3
-import RPi.GPIO as GPIO
 import time
+import RPi.GPIO as GPIO
+from config import *
 
-# The broker name or IP address.
+executing = True
+
 broker = "localhost"
-# broker = "127.0.0.1"
-# broker = "10.0.0.1"
-
-run = True
-
-def buttonPressedCallback():
-    global run
-    run = False
-
-# The MQTT client.
 client = mqtt.Client()
 
-# Thw main window.
-window = tkinter.Tk()
+def buttonPressedCallback(channel):
+    global executing
+    executing = False
 
-def process_message(message):
-    # Decode message.
+def process_message(client, userdata, message):
     message_decoded = (str(message.payload.decode("utf-8"))).split(".")
+
     if message_decoded[0] == "Client connected" or message_decoded[0] == "Client disconnected":
-        print(message_decoded[0] + " at: " +  message_decoded[1] + " on terminal " + message_decoded[2])
+        print(message_decoded[0] + " at: " + message_decoded[1] + " on terminal " + message_decoded[2])
     else:
         print("Card " + message_decoded[0] + " has been read at: " + message_decoded[1] + " on terminal " + message_decoded[2])
 
 def connect_to_broker():
-    # Connect to the broker.
     client.connect(broker)
-    # Send message about conenction.
     client.on_message = process_message
-    # Starts client and subscribe.
     client.loop_start()
-    client.subscribe("card_info")
+    client.subscribe("card_used/client")
 
 
 def disconnect_from_broker():
-    # Disconnet the client.
-    client.loop_stop()
-    
-    while (run):
+    while executing:
         time.sleep(0.1)
-        
+    client.loop_stop()
     client.disconnect()
 
 
